@@ -1,7 +1,10 @@
 library ridjnaelcrypt;
 
 import 'dart:convert';
+import 'dart:typed_data';
 import 'package:crypto/crypto.dart' as crypt;
+import 'package:steel_crypt/PointyCastleN/digests/md5.dart';
+import 'package:steel_crypt/PointyCastleN/digests/sha256.dart';
 import 'package:steel_crypt/steel_crypt.dart';
 
 /// Ridjnael Crypt
@@ -15,8 +18,19 @@ class Ridjnael {
     try {
       var keys = utf8.encode(setKey);
       var ivLocal = utf8.encode(setIv);
+
       var finalIV = crypt.md5.convert(ivLocal);
+      var k = MD5Digest().process(Uint8List.fromList(ivLocal));
+      print("crypt: ${finalIV.bytes}");
+      print("stell_crypt : ${k}");
+
       var finalKeys = crypt.sha256.convert(keys);
+      var s = SHA256Digest().process(Uint8List.fromList(keys));
+
+      print("crypt: ${finalKeys.bytes}");
+      print("stell_crypt : ${s}");
+
+
 
       return AesCrypt.computeRijndaelDecrypt(
           encryptedText, finalIV.bytes, finalKeys.bytes);
