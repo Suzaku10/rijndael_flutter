@@ -12,7 +12,6 @@ class Ridjnael {
   static String setIv;
 
   static String computeDecrypt(String encryptedText){
-    assert (setKey == null || setIv == null);
 
     try {
       var keys = utf8.encode(setKey);
