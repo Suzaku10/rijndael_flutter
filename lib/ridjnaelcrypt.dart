@@ -11,14 +11,12 @@ class Ridjnael {
   static String setKey;
   static String setIv;
 
-  static String computeDecrypt(String encryptedText, {String key, String iv}){
-
-    print(setKey);
-    print(setIv);
+  static String computeDecrypt(String encryptedText){
+    assert (setKey == null || setIv == null);
 
     try {
-      var keys = utf8.encode(key);
-      var ivLocal = utf8.encode(iv);
+      var keys = utf8.encode(setKey);
+      var ivLocal = utf8.encode(setIv);
       var finalIV = crypt.md5.convert(ivLocal);
       var finalKeys = crypt.sha256.convert(keys);
 
@@ -29,10 +27,10 @@ class Ridjnael {
     }
   }
 
-  static String computeEncrypt(String plainText, {String key, String iv}){
+  static String computeEncrypt(String plainText){
    try{
-     var keys = utf8.encode(key);
-     var ivLocal = utf8.encode(iv);
+     var keys = utf8.encode(setKey);
+     var ivLocal = utf8.encode(setIv);
      var finalIV = crypt.md5.convert(ivLocal);
      var finalKeys = crypt.sha256.convert(keys);
 
