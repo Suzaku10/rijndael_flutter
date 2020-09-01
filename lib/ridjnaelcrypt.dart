@@ -21,14 +21,14 @@ class Ridjnael {
 
       var finalIV = crypt.md5.convert(ivLocal);
       var k = MD5Digest().process(Uint8List.fromList(ivLocal));
-      print("crypt: ${finalIV.bytes}");
-      print("stell_crypt : ${k}");
+      print("crypt: ${Uint8List.fromList(finalIV.bytes)}");
+      print("stell_crypt : ${Uint8List.fromList(k)}");
 
       var finalKeys = crypt.sha256.convert(keys);
       var s = SHA256Digest().process(Uint8List.fromList(keys));
 
-      print("crypt: ${finalKeys.bytes}");
-      print("stell_crypt : ${s}");
+      print("crypt: ${Uint8List.fromList(finalKeys.bytes)}");
+      print("stell_crypt : ${Uint8List.fromList(s)}");
 
 
 
